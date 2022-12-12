@@ -47,28 +47,34 @@ let hisWantData = {
 let herPanel = document.querySelector(".herWants");
 
 let herWantKeys = Object.keys(herWantData);
+let herWantBool = new Map();
 
 herWantKeys.forEach((x) => {
     let tempNode = document.createElement("div");
     tempNode.setAttribute("class", "unselected");
     tempNode.append(x);
     herPanel.append(tempNode);
+    herWantBool.set(x, false);
     tempNode.addEventListener("click", () => {
         tempNode.classList.toggle("selectedf");
+        herWantBool.set(x, !herWantBool.get(x));
     })
 });
 
 let hisPanel = document.querySelector(".hisWants");
 
 let hisWantKeys = Object.keys(hisWantData);
+let hisWantBool = new Map();
 
 hisWantKeys.forEach((x) => {
     let tempNode = document.createElement("div");
     tempNode.setAttribute("class", "unselected");
     tempNode.append(x);
     hisPanel.append(tempNode);
+    hisWantBool.set(x, false);
     tempNode.addEventListener("click", () => {
         tempNode.classList.toggle("selectedm");
+        hisWantBool.set(x, !hisWantBool.get(x));
     })
 });
 
@@ -83,14 +89,16 @@ let objWantData = {
 let objPanel = document.querySelector(".herWantsO");
 
 let objWantKeys = Object.keys(objWantData);
-
+let objBool = new Map();
 objWantKeys.forEach((x) => {
     let tempNode = document.createElement("div");
     tempNode.setAttribute("class", "unselected");
     tempNode.append(x);
     objPanel.append(tempNode);
+    objBool.set(x, false);
     tempNode.addEventListener("click", () => {
         tempNode.classList.toggle("selectedo");
+        objBool.set(x, !objBool.get(x));
     })
 });
 
@@ -105,6 +113,38 @@ let commonF = [["fem, try your best to do a striptease/lapdance for male", "fem,
 ["male sits cross legged, and leans back slightly, leaning on his hands. fem, come and sit on his penis, face him", "male, sit comfortably on the couch, the bed or a chair... and fem, get on and ride him, face to face. Let him grab your buttocks and take care of your breasts while you set the pace", "male, put fem against a wall and penetrate her savagely", "male, you're lying on your back, fem is riding your penis turning her back to you. Let her set the pace and enjoy the view of her back and buttocks in motion", "fem, put your hands on male's chest and ride him. Spell his name with your hips while his cock is inside you"],
 ["fem is lying on her side. male, lie down next to her. While you penetrate her, rub her clitoris until she cums", "fem, you're lying on your back. mal has his penis in you and he rubs your clit. Move at him at your own pace, let the pleasure build to orgasm", "fem is lying on her back, her ankles on your shoulders. male, make love to her this way until you come"]];
 
+let hisTasks = [[], [], [], [], []];
+let herTasks = [[], [], [], [], []];
+
+document.querySelector(".playBtn").addEventListener("click", () => {
+    for (let i = 0; i < 5; i++) {
+        commonM[i].forEach((x) => {
+            hisTasks[i].insert(x);
+        })
+        hisWantKeys.forEach((want) => {
+            if (hisWantBool.get(want)) {
+                hisWantData[want][i].forEach((x) => { hisTasks[i].insert(x) });
+            }
+        });
+
+        commonF[i].forEach((x) => {
+            herTasks[i].insert(x);
+        })
+        herWantKeys.forEach((want) => {
+            if (herWantBool.get(want)) {
+                herWantData[want][i].forEach((x) => { herTasks[i].insert(x) });
+            }
+        });
+        objWantKeys.forEach((want) => {
+            if (objBool.get(want)) {
+                objWantData[want][i].forEach((x) => {
+                    if (Math.random() % 2) hisTasks[i].insert(x);
+                    else herTasks[i].insert(x);
+                });
+            }
+        })
+    }
+})
 
 
 
