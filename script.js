@@ -119,33 +119,81 @@ let herTasks = [[], [], [], [], []];
 document.querySelector(".playBtn").addEventListener("click", () => {
     for (let i = 0; i < 5; i++) {
         commonM[i].forEach((x) => {
-            hisTasks[i].insert(x);
+            hisTasks[i].push(x);
         })
         hisWantKeys.forEach((want) => {
             if (hisWantBool.get(want)) {
-                hisWantData[want][i].forEach((x) => { hisTasks[i].insert(x) });
+                hisWantData[want][i].forEach((x) => { hisTasks[i].push(x) });
             }
         });
 
         commonF[i].forEach((x) => {
-            herTasks[i].insert(x);
+            herTasks[i].push(x);
         })
         herWantKeys.forEach((want) => {
             if (herWantBool.get(want)) {
-                herWantData[want][i].forEach((x) => { herTasks[i].insert(x) });
+                herWantData[want][i].forEach((x) => { herTasks[i].push(x) });
             }
         });
         objWantKeys.forEach((want) => {
             if (objBool.get(want)) {
                 objWantData[want][i].forEach((x) => {
                     if (Math.random() % 2) hisTasks[i].insert(x);
-                    else herTasks[i].insert(x);
+                    else herTasks[i].push(x);
                 });
             }
         })
     }
 
+    document.querySelector(".background").style.display = "none";
+    document.querySelector(".placard").style.display = "flex";
+
 })
+
+const progress = document.querySelector("#progress");
+const prev = document.querySelector("#prev");
+const next = document.querySelector("#next");
+const circles = document.querySelectorAll(".circle");
+
+const update = () => {
+    circles.forEach((circle, i) => {
+        i < currActive
+            ? circle.classList.add("active")
+            : circle.classList.remove("active");
+    });
+
+    const actives = document.querySelectorAll(".active");
+    const width = ((actives.length - 1) / (circles.length - 1)) * 100;
+    progress.style.width = `${width}%`;
+
+    if (currActive === 1) {
+        prev.disabled = true;
+    } else if (currActive === circles.length) {
+        next.disabled = true;
+    } else {
+        prev.disabled = false;
+        next.disabled = false;
+    }
+};
+
+let currActive = 1;
+
+next.addEventListener("click", () => {
+    currActive++;
+
+    if (currActive > circles.length) {
+        currActive = circles.length;
+    }
+    update();
+});
+prev.addEventListener("click", () => {
+    currActive--;
+
+    if (currActive < 1) {
+        currActive = 1;
+    }
+    update();
+});
 
 
 
