@@ -521,9 +521,23 @@ height: 80%;
     display: flex;
     width: 50%;
     min-width: 300px;
-    background-color: red;
+    background-color: #383838;
     height: 300px;
     margin-right: 30px;
     margin-left: 30px;
     border-radius: 10px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.m{
+    color:rgb(18, 144, 255);
+}
+
+.f{
+    color: #fc00b1;
 }

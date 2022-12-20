@@ -103,7 +103,7 @@ objWantKeys.forEach((x) => {
 });
 
 let commonM = [["male, kiss fem's hands slowly as you wrap her around your arms", "male, make fem sit on your lap and makeout for 2 minutes", "male is lying on his back. fem, slide your hands across his chest and brush it with your lips", "male, sit down cross-legged. fem is lying on your legs, face to you. Gently massage her face, her temples and her scalp", "While you two are kissing, male, you run your hand along the legs of fem, you end up caressing her buttocks", "male, kiss fem languidly. Take the opportunity to exchange some caresses", "male, kiss fem's neck a few times then finish by sensually nibbling the lobe of her ear"],
-["male,", "male, put fem in a position you'd like to fuck her in, and dry hump her slowly while kissing and caressing her", "male, hug fem from behind. Cover her breasts with your hands and kiss her neck slowly", "male, massage fem's breasts", "male, kiss and lick fem's nipples for 1 minute", "male, show how much you want fem by licking/kissing her over her pantes 5 times", "male, kiss fem's breasts 6 times"],
+["male, hug fem from behind. Slowly caress her breasts and stomach while you kiss her back, neck and ears", "male, put fem in a position you'd like to fuck her in, and dry hump her slowly while kissing and caressing her", "male, hug fem from behind. Cover her breasts with your hands and kiss her neck slowly", "male, massage fem's breasts", "male, kiss and lick fem's nipples for 1 minute", "male, show how much you want fem by licking/kissing her over her pantes 5 times", "male, kiss fem's breasts 6 times"],
 ["male, rub fem's clitoris with your cock, but don't penetrate her yet!", "male, use fem's hand to masturbate. Only her hand is in contact with your penis", "male, let fem suck one of your fingers and then stick it slowly in her vagina. Take it back out just as gently", "male, stand in front of fem. You look each other in the eyes. Masturbate her while she does the same for you", "fem, lie on your stomach, arms and legs apart. Give yourself to him and let him kiss you wherever he wants", "male, how many fingers can you put into fem's vagina? Test this out, gradually, and stop when fem asks", "male, gently rub fem's clitoris with the tip of your cock"],
 ["fem sits on a table, a washing machine or a piece of furniture of your choice... male, make love to her in this position", "fem, lie down on your back. male lie down on you and penetrates you like this", "male, penetrate fem as deeply as possible, in the position of your choice, Once deep inside, you only have the right to make small movements", "male, penetrate fem and thrust into her a number of times equal to her age", "male, thrust into fem as hard as possible for 10 thrusts. If fem is too loud, cover her mouth with your hand to shut her up", "fem, lie down near the edge of the bed with your feet wide apart. male, put one hand on her neck and make love to her passionately", "fem, lie down on your stomach. male, put a pillow under her thrust deeply while on top"],
 ["male, take fem in the position of your choice until you come inside her", "male is lying on his back. fem, ride him until he comes in you", "male, penetrate fem doggy style until you come"]];
@@ -115,6 +115,9 @@ let commonF = [["fem, try your best to do a striptease/lapdance for male", "fem,
 
 let hisTasks = [[], [], [], [], []];
 let herTasks = [[], [], [], [], []];
+
+let maleName = "GUY";
+let femName = "GIRL";
 
 document.querySelector(".playBtn").addEventListener("click", () => {
     for (let i = 0; i < 5; i++) {
@@ -138,16 +141,23 @@ document.querySelector(".playBtn").addEventListener("click", () => {
         objWantKeys.forEach((want) => {
             if (objBool.get(want)) {
                 objWantData[want][i].forEach((x) => {
-                    if (Math.random() % 2) hisTasks[i].insert(x);
+                    if (Math.random() % 2) hisTasks[i].push(x);
                     else herTasks[i].push(x);
                 });
             }
         })
     }
-
+    femName = document.querySelector(".herName").value;
+    maleName = document.querySelector(".hisName").value;
     document.querySelector(".background").style.display = "none";
     document.querySelector(".placard").style.display = "flex";
-
+    let appendText = document.createElement("span");
+    appendText.innerText = herTasks[0][Math.floor(Math.random() * herTasks[0].length)];
+    document.querySelector(".dareArea").append(appendText);
+    let temptext = document.querySelector(".dareArea span").innerText;
+    temptext = temptext.replaceAll("fem", '<b class="f">' + femName + '</b>');
+    temptext = temptext.replaceAll("male", '<b class="m">' + maleName + '</b>');
+    document.querySelector(".dareArea span").innerHTML = temptext;
 })
 
 const progress = document.querySelector("#progress");
@@ -177,13 +187,22 @@ const update = () => {
 };
 
 let currActive = 1;
-
+let currTurn = 1;
 next.addEventListener("click", () => {
-    currActive++;
-
+    currTurn++;
+    if ((currTurn - 1) % 5 == 0) currActive++;
     if (currActive > circles.length) {
         currActive = circles.length;
     }
+    if (currTurn % 2) {
+        document.querySelector(".dareArea span").innerText = herTasks[currActive - 1][Math.floor(Math.random() * herTasks[currActive - 1].length)];
+    } else {
+        document.querySelector(".dareArea span").innerText = hisTasks[currActive - 1][Math.floor(Math.random() * hisTasks[currActive - 1].length)];
+    }
+    let temptext = document.querySelector(".dareArea span").innerText;
+    temptext = temptext.replaceAll("fem", '<b class="f">' + femName + '</b>');
+    temptext = temptext.replaceAll("male", '<b class="m">' + maleName + '</b>');
+    document.querySelector(".dareArea span").innerHTML = temptext;
     update();
 });
 prev.addEventListener("click", () => {
@@ -193,6 +212,8 @@ prev.addEventListener("click", () => {
         currActive = 1;
     }
     update();
+    currTurn -= 4;
+    next.click();
 });
 
 
