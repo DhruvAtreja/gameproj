@@ -532,6 +532,11 @@ height: 80%;
     color: white;
     font-size: 20px;
     padding: 20px;
+    overflow-y: scroll;
+}
+.dareArea span{
+    max-width: 450px;
+    word-wrap: break-word;
 }
 
 .m{
