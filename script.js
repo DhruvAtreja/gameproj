@@ -5,6 +5,13 @@ femDropBtn.addEventListener("click", () => {
     else if (window.getComputedStyle(herWants, null).display == "flex") herWants.style.display = "none";
 });
 
+document.querySelector(".logo").addEventListener("click", () => {
+    currActive = 1;
+    currTurn = 1;
+    update();
+    window.location.reload();
+})
+
 let maleDropBtn = document.querySelector(".dropbtnM");
 let hisWants = document.querySelector(".hisWants");
 maleDropBtn.addEventListener("click", () => {
@@ -116,7 +123,7 @@ let commonF = [["fem, try your best to do a striptease/lapdance for male", "fem,
 ["fem, sit down. male sits between your legs turning his back to you. Stroke his penis, pretending to masturbate like a man", "fem, for one minute, you'll caress male's face with your breasts", "fem, slip your hand into your panties and caress yourself for a few seconds. Then remove your hand and put your fingers on male's lips", "fem, kiss male's cock through his underpants", "fem, ask male to get up, then you'll rub your buttocks against his cock", "fem, using male's fingers, show him how you perform fellatio for 30 seconds", "fem, take male's penis in your hands. Look him in the eyes while you masturbate him for 30 seconds. Let him know how bad you want him", "fem, kiss male's pecs 8 times", "fem, close your eyes and play with your breasts for 1 minute. male, savor the moment and touch penis slowly"],
 ["fem, masturbate male while kissing his testicles", "male, kneel facing fem, who is standing, and kiss her vagina", "fem, caress yourself in front of male. Your mission: to excite him as much as possible by showing him how much pleasure you can take", "fem, you're on all fours and your back is arched. You show off your vagina to male who can lick it as her pleases", "male is lying on his back. fem, take the opportunity to fondle his cock with your breasts. As you wish, you can slide it between your breasts, rub the tip of it with your nipples... But you cannot use your hands!", "fem, wrap male's penis in your panties and masturbate him for a minute"],
 ["male sits cross legged, and leans back slightly, leaning on his hands. fem, come and sit on his penis, face him", "male, sit comfortably on the couch, the bed or a chair... and fem, get on and ride him, face to face. Let him grab your buttocks and take care of your breasts while you set the pace", "male, put fem against a wall and penetrate her savagely", "male, you're lying on your back, fem is riding your penis turning her back to you. Let her set the pace and enjoy the view of her back and buttocks in motion", "fem, put your hands on male's chest and ride him. Spell his name with your hips while his cock is inside you"],
-["fem is lying on her side. male, lie down next to her. While you penetrate her, rub her clitoris until she cums", "fem, you're lying on your back. mal has his penis in you and he rubs your clit. Move at him at your own pace, let the pleasure build to orgasm", "fem is lying on her back, her ankles on your shoulders. male, make love to her this way until you come"]];
+["fem is lying on her side. male, lie down next to her. While you penetrate her, rub her clitoris until she cums", "fem, you're lying on your back. male has his penis in you and he rubs your clit. Move at him at your own pace, let the pleasure build to orgasm", "fem is lying on her back, her ankles on your shoulders. male, make love to her this way until you come"]];
 
 let hisTasks = [[], [], [], [], []];
 let herTasks = [[], [], [], [], []];
@@ -154,6 +161,8 @@ document.querySelector(".playBtn").addEventListener("click", () => {
     }
     femName = document.querySelector(".herName").value;
     maleName = document.querySelector(".hisName").value;
+    if (femName == "") femName = "GIRL";
+    if (maleName == "") maleName = "GUY";
     document.querySelector(".background").style.display = "none";
     document.querySelector(".placard").style.display = "flex";
     let appendText = document.createElement("span");
@@ -162,7 +171,7 @@ document.querySelector(".playBtn").addEventListener("click", () => {
     let temptext = document.querySelector(".dareArea span").innerText;
     temptext = temptext.replaceAll("fem", '<b class="f">' + femName + '</b>');
     temptext = temptext.replaceAll("male", '<b class="m">' + maleName + '</b>');
-    document.querySelector(".dareArea span").innerHTML = temptext;
+    document.querySelector(".dareArea span").innerHTML = temptext + "!";
 })
 
 const progress = document.querySelector("#progress");
@@ -207,7 +216,7 @@ next.addEventListener("click", () => {
     let temptext = document.querySelector(".dareArea span").innerText;
     temptext = temptext.replaceAll("fem", '<b class="f">' + femName + '</b>');
     temptext = temptext.replaceAll("male", '<b class="m">' + maleName + '</b>');
-    document.querySelector(".dareArea span").innerHTML = temptext;
+    document.querySelector(".dareArea span").innerHTML = temptext + "!";
     update();
 });
 prev.addEventListener("click", () => {
