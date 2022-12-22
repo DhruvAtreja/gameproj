@@ -164,29 +164,29 @@ document.querySelector(".playBtn").addEventListener("click", () => {
     if (femName == "") femName = "GIRL";
     if (maleName == "") maleName = "GUY";
     document.querySelector(".background").style.display = "none";
-    document.querySelector(".placard").style.display = "flex";
+    document.querySelector(".placardc").style.display = "flex";
     let appendText = document.createElement("span");
     appendText.innerText = herTasks[0][Math.floor(Math.random() * herTasks[0].length)];
-    document.querySelector(".dareArea").append(appendText);
-    let temptext = document.querySelector(".dareArea span").innerText;
+    document.querySelector(".dareAreac").append(appendText);
+    let temptext = document.querySelector(".dareAreac span").innerText;
     temptext = temptext.replaceAll("fem", '<b class="f">' + femName + '</b>');
     temptext = temptext.replaceAll("male", '<b class="m">' + maleName + '</b>');
-    document.querySelector(".dareArea span").innerHTML = temptext + "!";
+    document.querySelector(".dareAreac span").innerHTML = temptext + "!";
 })
 
-const progress = document.querySelector("#progress");
-const prev = document.querySelector("#prev");
-const next = document.querySelector("#next");
-const circles = document.querySelectorAll(".circle");
+const progress = document.querySelector("#progressc");
+const prev = document.querySelector("#prevc");
+const next = document.querySelector("#nextc");
+const circles = document.querySelectorAll(".circlec");
 
 const update = () => {
     circles.forEach((circle, i) => {
         i < currActive
-            ? circle.classList.add("active")
-            : circle.classList.remove("active");
+            ? circle.classList.add("activec")
+            : circle.classList.remove("activec");
     });
 
-    const actives = document.querySelectorAll(".active");
+    const actives = document.querySelectorAll(".activec");
     const width = ((actives.length - 1) / (circles.length - 1)) * 100;
     progress.style.width = `${width}%`;
 
@@ -209,14 +209,14 @@ next.addEventListener("click", () => {
         currActive = circles.length;
     }
     if (currTurn % 2) {
-        document.querySelector(".dareArea span").innerText = herTasks[currActive - 1][Math.floor(Math.random() * herTasks[currActive - 1].length)];
+        document.querySelector(".dareAreac span").innerText = herTasks[currActive - 1][Math.floor(Math.random() * herTasks[currActive - 1].length)];
     } else {
-        document.querySelector(".dareArea span").innerText = hisTasks[currActive - 1][Math.floor(Math.random() * hisTasks[currActive - 1].length)];
+        document.querySelector(".dareAreac span").innerText = hisTasks[currActive - 1][Math.floor(Math.random() * hisTasks[currActive - 1].length)];
     }
-    let temptext = document.querySelector(".dareArea span").innerText;
+    let temptext = document.querySelector(".dareAreac span").innerText;
     temptext = temptext.replaceAll("fem", '<b class="f">' + femName + '</b>');
     temptext = temptext.replaceAll("male", '<b class="m">' + maleName + '</b>');
-    document.querySelector(".dareArea span").innerHTML = temptext + "!";
+    document.querySelector(".dareAreac span").innerHTML = temptext + "!";
     update();
 });
 prev.addEventListener("click", () => {
