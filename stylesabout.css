@@ -27,6 +27,7 @@ a:hover {
 html,
 body {
   height: auto;
+  min-height: 800px;
   background-color: #fff;
 }
 body {
