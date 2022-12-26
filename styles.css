@@ -576,3 +576,7 @@ height: 80%;
 body{
     background-color: black!important;
 }
+
+#donatemodalbtn{
+    background-color: black;
+}
