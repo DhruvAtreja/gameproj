@@ -232,6 +232,6 @@ prev.addEventListener("click", () => {
 
 setInterval(() => {
     document.querySelector("#donatemodalbtn").click();
-}, 150000);
+}, 300000);
 
 
