@@ -23,14 +23,14 @@ body {
 .header .subheading {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  font-size: smaller;
+  font-size: larger;
   color: #455A64;
 }
 
 .content {
   grid-column: 2 / 3;
   text-align: justify;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   line-height: 1.4;
 }
 
