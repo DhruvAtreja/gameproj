@@ -3,6 +3,8 @@
 
 body {
   font-family: Lato, sans-serif;
+  background-color: #faf1f1 !important;
+
 }
 
 .container {
@@ -10,7 +12,9 @@ body {
   grid-template-columns: 4rem 3fr 1fr 2rem;
   margin-top: 2rem;
   grid-column-gap: 2rem;
+  background-color: #faf1f1;
 }
+
 
 .header {
   grid-column: 2 / 5;
