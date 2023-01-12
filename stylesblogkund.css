@@ -34,7 +34,7 @@ body {
 
 .content {
   grid-column: 2 / 3;
-  text-align: justify;
+  text-align:left;
   font-size: 1.2rem;
   line-height: 1.4;
 }
@@ -113,7 +113,7 @@ body {
 
 @media (min-width: 1200px){
   .container {
-    max-width: 85% !important;
+    max-width: 65% !important;
     margin-left: auto !important;
     margin-right: auto !important;
     
